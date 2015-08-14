@@ -5,9 +5,6 @@
   "authors": [
     "Kris <kris@urbanscouter.com>"
   ],
-  "moduleType": [
-    "node"
-  ],
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -17,6 +14,6 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.0.0"
+    "polymer": "Polymer/polymer#^1.1.0"
   }
 }
