@@ -1,0 +1,22 @@
+{
+  "name": "polymer_todo",
+  "version": "0.0.0",
+  "homepage": "https://github.com/AmbitiousOkie/polymer__todo",
+  "authors": [
+    "Kris <kris@urbanscouter.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0"
+  }
+}
