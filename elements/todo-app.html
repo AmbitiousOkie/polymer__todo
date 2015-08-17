@@ -13,7 +13,57 @@
     ...
 </head>
 <dom-module id="todo-app">
-    <style> ... </style>
-    <template> ... </template>
+    <style></style>
+    <template>
+        <paper-menu class="list">
+            <template is="dom-if" if="{{!done.length}}">
+                <paper-material>
+                    <paper-item>Completed tasks will appear here!</paper-item>
+                </paper-material>
+            </template>
+            <template id="done" is="dom-repeat" items="{{done}}">
+                <paper-item>{{item.task}}<i style="margin-left: 5px;">{{item.user}}</i></paper-item>
+            </template>
+        </paper-menu>
+    </template>
 </dom-module>
-<script> ... </script>
+
+<script>
+  Polymer({
+    is: "todo-element",
+    properties: {
+        // declare properties for the element's public API
+        user: {
+            type: String,
+            value: ""   
+        },
+        task: {
+            type: String,
+            value: "Hello!"
+        },
+        rid: {
+            type: Number,
+            value: -1
+        },
+        time: {
+            type: String,
+            value: new Date().toLocaleString()
+        },
+        completed: {
+            type: Boolean,
+            value: false,
+            observer:'compChanged'
+        },
+        editing: {
+            type: Boolean,
+            value: false    
+        }
+    },
+    compChanged: function(e){
+        if(e){ this.fire('complete',this); }
+    },
+    doEdit: function(e){
+        this.editing=!this.editing;
+    },
+  });
+</script>
