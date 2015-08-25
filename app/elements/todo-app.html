@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="../bower_components/polymer/polymer.html" rel="import">
+	<link href="../elements/todo-element.html" rel="import">
+	<link href="../bower_components/paper-drawer-panel/paper-drawer-panel.html" rel="import">
+	<link href="../bower_components/paper-header-panel/paper-header-panel.html" rel="import">
+	<link href="../bower_components/paper-toolbar/paper-toolbar.html" rel="import">
+	<link href="../bower_components/paper-icon-button/paper-icon-button.html" rel="import">
+	<link href="../bower_components/paper-material/paper-material.html" rel="import">
+	<link href="../bower_components/paper-menu/paper-menu.html" rel="import">	
+	<link href="../bower_components/paper-item/paper-item.html" rel="import">
+	<link href="../bower_components/paper-input/paper-input.html" rel="import">
+	<link href="../bower_components/iron-icons/iron-icons.html" rel="import">
+	<link href="../bower_components/pubnub-element/pubnub-element.html" rel="import">
+	<link href="../bower_components/grid-element/grid-element.html" rel="import">
+
+</head>
+
+<dom-module id="todo-app">
+	<style>
+	.list {
+		padding: 0;
+/* 		border-right: 1px solid #ccc; */
+	}
+	
+	.list paper-item {
+		min-height: 80px;
+		border-bottom: 1px solid #dedede;
+		background-color: #fafafa;
+	}
+	
+	
+	paper-input {
+		margin: 0 4vw;
+		padding: 0;
+	}
+	
+	paper-material {
+		background-color: #fff;
+		max-width: 640px;
+		width: 95%;
+		margin: 25px auto;
+		position: relative;
+	}
+	
+  
+	paper-fab {
+	    position: absolute;
+	    background: #00BCD4;
+	    bottom: 2vh;
+	    right: 2vw;
+    }
+
+	.main-panel {
+		background-color: #eee;
+		height: 100vh;
+		overflow-y: hidden;
+	}
+	
+
+	paper-toolbar {
+		background:#ce2700;
+	}
+	
+
+	.app-name {
+		font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+		font-size: 24px;
+		font-style: normal;
+		font-variant: normal;
+		font-weight: 500;
+		line-height: 26.3999996185303px;
+	}
+
+	.box-row-wrap-inner {
+		display: -webkit-box;
+		display: -moz-box;
+		display: box;
+	}
+
+	.box-col-wrap-inner {
+		display: -webkit-box;
+		display: -moz-box;
+		display: box;
+
+		-webkit-box-orient: vertical;
+		-moz-box-orient: vertical;
+		box-orient: vertical;
+	}
+
+	.box-item {
+		-webkit-box-flex: 1;
+		-moz-box-flex: 1;
+		box-flex: 1;
+	}
+
+	.fill-height-or-more {
+	  display: -webkit-box;
+	  display: -webkit-flex;
+	  display: -moz-box;
+	  display: -ms-flexbox;
+	  display: flex;
+	  -webkit-box-orient: vertical;
+	  -webkit-box-direction: normal;
+	  -webkit-flex-direction: column;
+	  -moz-box-orient: vertical;
+	  -moz-box-direction: normal;
+	  -ms-flex-direction: column;
+	  flex-direction: column;
+	} 
+
+
+	
+
+	</style>
+  
+	<template>
+		<!-- <paper-drawer-panel>
+			<paper-header-panel class="side-panel" drawer>
+				<paper-toolbar>
+					<paper-item>Completed Tasks!</paper-item>
+				</paper-toolbar>
+				<paper-menu id="completed" class="list">
+					<template is="dom-if" if="{{!done.length}}">
+						<paper-material class="task-empty">
+							<paper-item elevation="2">Completed tasks will appear here!</paper-item>
+						</paper-material>
+					</template>
+					<template id="done" is="dom-repeat" items="{{done}}">
+						<paper-item>{{item.task}}<i style="margin-left: 5px;">{{item.user}}</i></paper-item>
+					</template>
+				</paper-menu>
+				<paper-material id="made-with" elevation="2">
+					<a href="http://www.pubnub.com/"><img src="../img/made-with.png"/></a>
+				</paper-material>
+			</paper-header-panel> -->
+
+<!-- =================================================================================== -->
+
+			<paper-header-panel main class="main-panel">
+				<paper-toolbar>
+					<paper-item>
+						<div class="app-name">Red Dirt Devs</div>
+					</paper-item>
+				</paper-toolbar>
+
+<!-- 				<div class="box-row-wrap-inner">
+					<div class="box-item">
+						<paper-material elevation="1">
+							<div class="box-col-wrap-inner">
+								<div class="box-item">
+									Test
+								</div>
+								<div class="box-item">
+									
+								</div>
+							</div>
+						</paper-material>
+					</div>
+
+					<div class="box-item">
+						<paper-material elevation="1">
+							Test
+						</paper-material>
+					</div>
+
+					<div class="box-item">
+						<paper-material elevation="1">
+							Test
+						</paper-material>
+					</div>
+				</div> -->
+
+				<div class="horizontal layout wrap"> <!-- Content Row -->
+
+<!--  -->
+
+					<div class="flex"> <!-- Column 1 -->
+						<div class="vertical layout wrap" style="height:90%">
+							<div class="flex">
+								<paper-material elevation="1" style="height:45%">
+									<img src="../images/touch/chrome-touch-icon-192x192.png">
+								</paper-material>
+							</div>
+							<div class="horizontal layout flex">
+								<div class="flex">
+									<paper-material elevation="1" style="height:45%">
+										<img src="../images/touch/chrome-touch-icon-192x192.png">
+									</paper-material>
+								</div>
+								<div class="flex">
+									<paper-material elevation="1" style="height:45%">
+										<img src="../images/touch/chrome-touch-icon-192x192.png">
+									</paper-material>
+								</div>
+
+							</div>
+						</div>
+					</div>  <!-- Column 1 -->
+
+<!--  -->
+
+					<div class="flex"> <!-- Column 2 -->
+						<div class="vertical layout wrap" style="height:90%">
+							<div class="horizontal layout flex">
+								<div class="flex">
+									<paper-material elevation="1" style="height:45%">
+										<img src="../images/touch/chrome-touch-icon-192x192.png">
+									</paper-material>
+								</div>
+								<div class="flex">
+									<paper-material elevation="1" style="height:45%">
+										<img src="../images/touch/chrome-touch-icon-192x192.png">
+									</paper-material>
+								</div>
+							</div>
+							<div class="flex">
+								<paper-material elevation="1" style="height:45%">
+									<img src="../images/touch/chrome-touch-icon-192x192.png">
+								</paper-material>
+							</div>
+						</div>
+					</div>  <!-- Column 2 -->
+
+<!--  -->
+
+					<div class="flex"> <!-- Column 3 -->
+						<div class="vertical layout wrap" style="height:90%">
+							<div class="flex">
+								<paper-material elevation="1" style="height:45%">
+									<img src="../images/touch/chrome-touch-icon-192x192.png">
+								</paper-material>
+							</div>
+							<div class="horizontal layout flex">
+								<div class="flex">
+									<paper-material elevation="1" style="height:45%">
+										<img src="../images/touch/chrome-touch-icon-192x192.png">
+									</paper-material>
+								</div>
+								<div class="flex">
+									<paper-material elevation="1" style="height:45%">
+										<img src="../images/touch/chrome-touch-icon-192x192.png">
+									</paper-material>
+								</div>
+
+							</div>
+						</div>
+					</div>  <!-- Column 3 -->
+
+<!--  -->
+
+				</div> <!-- Content Row -->
+
+			</paper-header-panel>
+		</paper-drawer-panel> 
+
+	</template>
+</dom-module>
+
+<script>
+  // element registration
+  Polymer({
+    is: "todo-app"
+  });
+
+
+</script>

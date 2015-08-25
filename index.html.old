@@ -4,9 +4,6 @@
     <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
     <!-- <link href="elements/todo-app.html" rel="import"> -->
     <link rel="import"  href="elements/todo-app.html">
-
-
-
 </head>
 <body fullbreed unresolved>
 	<p>Page loaded</p>
